@@ -1,55 +1,197 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Arial', sans-serif;
+    background-color: #1A1A1C;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    overflow: hidden;
 }
 
 .game-container {
     text-align: center;
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 350px;
+    background-color: #373636;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    width: 380px;
+    max-width: 100%;
+    animation: fadeIn 1s ease-out;
 }
 
 h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #e74c3c;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: bounce 2s infinite;
 }
 
 .game-board {
     display: grid;
     grid-template-columns: repeat(4, 100px);
-    gap: 10px;
+    gap: 15px;
     margin-top: 20px;
     justify-items: center;
+    animation: fadeIn 1.5s ease-out;
 }
 
+/* Cartas */
 .card {
-    width: 80px;
-    height: 80px;
-    background-color: #3498db;
+    width: 90px;
+    height: 90px;
+    background-color: #e74c3c;
     color: white;
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    border-radius: 8px;
-    transition: transform 0.3s;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+}
+
+.card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+    animation: glow 0.5s ease-in-out infinite alternate;
 }
 
 .card.flipped {
-    background-color: #2ecc71;
+    background-color: #f39c12;
     transform: rotateY(180deg);
 }
 
 .card.matched {
     background-color: #95a5a6;
     pointer-events: none;
+    animation: matchAnimation 0.5s ease-in-out forwards;
+}
+
+/* Efeitos de animação */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes matchAnimation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 165, 0, 0.6); /* Laranja suave */
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(255, 165, 0, 1); /* Brilho mais forte */
+    }
+}
+
+/* Animação de vitória */
+@keyframes victory {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Responsividade para telas pequenas (mobile) */
+@media (max-width: 600px) {
+    .game-container {
+        width: 100%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .game-board {
+        grid-template-columns: repeat(3, 80px);
+        gap: 8px;
+    }
+
+    .card {
+        width: 70px;
+        height: 70px;
+        font-size: 20px;
+    }
+}
+
+/* Responsividade para telas médias (tablet) */
+@media (max-width: 900px) {
+    .game-board {
+        grid-template-columns: repeat(4, 90px);
+        gap: 12px;
+    }
+
+    .card {
+        width: 80px;
+        height: 80px;
+        font-size: 26px;
+    }
+}
+
+/* Aumentando o contraste para acessibilidade */
+body {
+    color: white;
+}
+
+h1 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adiciona sombra para melhorar legibilidade */
+}
+
+/* Melhorando contraste nas cartas */
+.card, .card.flipped {
+    background-color: #e74c3c;
+    color: white;
+    font-size: 28px;
+}
+
+.card.matched {
+    background-color: #95a5a6;
+    pointer-events: none;
+    opacity: 0.7; /* Aumento do contraste para cards combinados */
+}
+
+/* Melhorando a animação de cartas combinadas */
+.card.matched {
+    animation: matchAnimation 0.5s ease-in-out forwards;
 }
