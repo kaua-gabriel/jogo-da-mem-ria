@@ -6,17 +6,69 @@
   <title>Jogo da Memória</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+
   <main class="game-container">
+
     <h1>Jogo da Memória</h1>
-    <p class="descricao">Encontre os pares correspondentes.</p>
-    <p class="timer">Tempo restante: <span id="timer">40</span> segundos</p>
 
-    <section id="gameBoard" class="game-board" aria-label="Tabuleiro do jogo"></section>
+    <p class="descricao">
+      Encontre os pares correspondentes.
+    </p>
 
-    <button id="startBtn" onclick="startGame()">Iniciar Jogo</button>
+    <p class="timer">
+      Tempo restante:
+      <span id="timer">40</span> segundos
+    </p>
+
+    <section
+      id="gameBoard"
+      class="game-board"
+      aria-label="Tabuleiro do jogo">
+    </section>
+
+    <button
+      id="startBtn"
+      type="button"
+      onclick="startGame()">
+Começar Jogo 
+    </button>
+
   </main>
 
+
+  <!-- Popup de resultado -->
+
+  <div
+    id="gamePopup"
+    class="game-popup"
+    aria-hidden="true">
+
+    <div class="popup-content">
+
+      <div id="popupIcon" class="popup-icon">✦</div>
+
+      <h2 id="popupTitle">
+        Você ganhou!
+      </h2>
+
+      <p id="popupMessage">
+        Você encontrou todos os pares!
+      </p>
+
+      <button
+        id="popupButton"
+        type="button">
+        Jogar Novamente
+      </button>
+
+    </div>
+
+  </div>
+
+
   <script src="main.js"></script>
+
 </body>
 </html>
